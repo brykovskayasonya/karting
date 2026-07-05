@@ -31,9 +31,7 @@
 
 ## Промпты
 
-`01-analysis/prompts/good-prompts.md` — промпты для LOGIC-005 и BS-001.
-*(Плюс промпты из чата, где реализовывался/дорабатывался `SlotListStore` —
-приложить экспорт при наличии.)*
+см `01-analysis/prompts/good-prompts.md` 
 
 ## Проверка
 
