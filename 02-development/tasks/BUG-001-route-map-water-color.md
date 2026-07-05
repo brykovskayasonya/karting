@@ -12,9 +12,6 @@
 
 ## Требования
 
-- `01-analysis/3-design-brief/BS-004-route-map.md` — заглушка карты маршрута:
-  статичный мок-скриншот, не зависящий от координат/БД, с CTA «Проложить маршрут»
-  и «Открыть в картах».
 - Задача: заменить цветовую схему заглушки (убрать морскую тематику).
 
 ## Причина / диагностика
@@ -33,10 +30,6 @@
    - Build (`:androidApp:assembleDebug`) проходил успешно, `shared` модуль
      пересобирался с новым кодом (`shared:compileDebugKotlinAndroid`
      выполнялся, а не `UP-TO-DATE`).
-   - В логе **Run** при этом не было строки `Installing APK...` — Android
-     Studio при повторном запуске просто заново активировала уже установленную
-     на устройстве Activity (`adb shell am start ...`), **не переустанавливая
-     APK** («Delta Install» посчитал переустановку не нужной).
    - Ручное удаление приложения (`adb uninstall com.volna.app` → `Success`)
      и повторный `Run` устранили проблему: APK был установлен заново, и
      заглушка карты обновилась.
@@ -47,10 +40,7 @@
   `drawRoundRect`, весь фон канвы теперь рисуется как `landColor`
   (`0xFFF6F3ED`, бежевый) с газонами `parkColor` (`0xFFD5F3BA`), без «моря».
 - Обходной путь для среды разработки: для гарантированной установки свежей
-  сборки на устройстве — либо `adb uninstall <applicationId>` перед `Run`,
-  либо включить в Android Studio настройку
-  **Settings → Build, Execution, Deployment → Deployment →
-  "Always install with package manager (disable delta install)"**.
+  сборки на устройстве — либо `adb uninstall <applicationId>` перед `Run`
 
 
 ## Проверка
